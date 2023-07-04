@@ -84,7 +84,11 @@ app.get("/redirect", async (req, res) => {
       });
       console.log("Token:", accessToken);
 
-      res.sendStatus(200);
+      res.statusCode = 200;
+      res.setHeader("Content-type", "text/html");
+      res.write(`<div>${accessToken.token}</div>`);
+      res.end();
+      //res.sendStatus(200);
     })
     .catch((error) => {
       console.log(error);
